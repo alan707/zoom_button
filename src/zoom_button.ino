@@ -9,10 +9,9 @@
 int raw_value = 0;
 bool is_button_pressed = false;
 bool keystroke_sent = false;
-
 SerialLogHandler logHandler;
 
-SYSTEM_THREAD(ENABLED)
+SYSTEM_THREAD(ENABLED);
 
 // Initialize device as a Hardware Input Device (basically a keyboard)
 STARTUP(Keyboard.begin());
@@ -29,10 +28,6 @@ void check_state_and_send_shortcut(){
   }
 }
 
-// void setup(){
-//   Log.info("Zoom button ready...");
-// }
-
 void loop() {
   raw_value = analogRead(A0);
   if ( raw_value > 2500 ) {
@@ -43,5 +38,4 @@ void loop() {
     keystroke_sent = false;
   }
   check_state_and_send_shortcut();
-  Log.info(String(raw_value));
 }
