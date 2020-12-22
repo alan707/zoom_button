@@ -10,7 +10,7 @@ A physical button that ends Zoom meetings
 
 ### Hardware Requirements
 
-- virtually button or switch
+- virtually any button or switch
 - Particle Photon
 - micro-usb cable
 
