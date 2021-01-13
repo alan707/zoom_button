@@ -1,2 +1,4 @@
 target/
 src/zoom_button.cpp
+
+.DS_Store
