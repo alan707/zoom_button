@@ -9,26 +9,40 @@
 #include<Keyboard.h>
 #include "LowPassFilter.hpp"
 
+#define OSX // LINUX, OSX or WINDOWS
+
 int raw_value = 0;
 int filtered_value = 0;
 bool is_button_pressed = false;
 bool keystroke_sent = false;
-LowPassFilter lpf(1.0, 0.005);
+LowPassFilter lpf(0.9, 0.005);
 
 void check_state_and_send_shortcut(){
   if (is_button_pressed && !keystroke_sent){
     //kill screenshare in case it was open
-    Keyboard.press(KEY_LEFT_GUI);
-    Keyboard.write('S');
+    #ifdef OSX
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.write('S');
+    #endif
+    #ifdef WINDOWS
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write('s');
+    #endif
+    Keyboard.releaseAll();
     // send escape key to exit screenshare select window (if screenshare was off)
     Keyboard.write(KEY_ESC);
     // send leave meeting command
-    Keyboard.press(KEY_LEFT_GUI);
-    Keyboard.write('w');
+    #ifdef OSX
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.write('w');
+    #endif
+    #ifdef WINDOWS
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write('q');
+    #endif
     Keyboard.releaseAll();
     // press and release enter key to confirm we want to exit 
     Keyboard.write(KEY_RETURN);
-    
     keystroke_sent = true;
   }
   Keyboard.end();
