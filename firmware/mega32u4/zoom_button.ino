@@ -58,6 +58,7 @@ void turn_off_light(){
 
 void setup() { 
   pinMode(13, OUTPUT);
+  pinMode(A0, INPUT_PULLUP);
   Keyboard.begin();
 }
 
