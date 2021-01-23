@@ -22,3 +22,5 @@ Pin A0  -> Common
 
 ### Tested On
 - OSX 10.15.7 (Catalina)
+- Ubuntu 18.04
+- Windows 10
