@@ -10,7 +10,9 @@
 #include "LowPassFilter.hpp"
 
 #define OSX // LINUX, OSX or WINDOWS
+#define NORMAL // define DEBUG for development or NORMAL for production
 
+constexpr int threshold = 1023 / 2; // set threshold as a constant expression, calcualted at compile time.
 int raw_value = 0;
 int filtered_value = 0;
 bool is_button_pressed = false;
@@ -57,16 +59,25 @@ void turn_off_light(){
 }
 
 void setup() { 
+  #ifdef DEBUG
+    Serial.begin(115200);
+  #endif
   pinMode(13, OUTPUT);
   pinMode(A0, INPUT_PULLUP);
   Keyboard.begin();
 }
 
 void loop() {
-
   raw_value = analogRead(A0);
-  filtered_value = lpf.update(raw_value); 
-  if ( filtered_value == 0) {
+  filtered_value = lpf.update(raw_value);
+  #ifdef DEBUG
+    Serial.print("raw value is: ");
+    Serial.print(raw_value);
+    Serial.print(" | filtered value is: ");
+    Serial.print(filtered_value);
+    Serial.println();
+  #endif
+  if ( filtered_value < threshold) {
     is_button_pressed = true;
     turn_on_light();
   }
@@ -75,5 +86,7 @@ void loop() {
     keystroke_sent = false;
     turn_off_light();
   }
-  check_state_and_send_shortcut();
+  #ifdef NORMAL
+    check_state_and_send_shortcut();
+  #endif
 }
