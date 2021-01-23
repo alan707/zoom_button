@@ -17,7 +17,7 @@ int raw_value = 0;
 int filtered_value = 0;
 bool is_button_pressed = false;
 bool keystroke_sent = false;
-LowPassFilter lpf(0.9, 0.005);
+LowPassFilter lpf(1, 0.007);
 
 void check_state_and_send_shortcut(){
   if (is_button_pressed && !keystroke_sent){
