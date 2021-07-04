@@ -12,7 +12,7 @@
 #define OSX // LINUX, OSX or WINDOWS
 #define NORMAL // define DEBUG for development or NORMAL for production
 
-constexpr int threshold = 1023 / 2; // set threshold as a constant expression, calcualted at compile time.
+constexpr int threshold = 1023 / 2; // set threshold as a constant expression, calculated at compile time.
 int raw_value = 0;
 int filtered_value = 0;
 bool is_button_pressed = false;
