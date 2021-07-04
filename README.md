@@ -2,6 +2,8 @@
 
 A physical button that ends Zoom meetings
 
+PRE-ORDER YOURS NOW! https://thetaskbutton.com/
+
 <p align="center">
   <img src="img/zoom_button_p1.png" height="300" title="hover text" alt="An emergency stop button in a gray case">
 </p>
